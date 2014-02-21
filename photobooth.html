@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>WebRTC Photobooth</title>
+	<style>
+    canvas { display: none; }
+    video { 
+      width: 320px;
+      height: 240px;
+    }
+
+    img { transition: all 400ms ease; }
+    img:hover {
+      -webkit-transform: rotate(5deg) scale(1.25);
+    }
+  </style>
+</head>
+<body>
+	
+  <video autoplay></video>
+  <button id="takeSnap">Snap!</button>
+  <canvas></canvas>
+  <div id="roll"></div>
+
+  <script type="text/javascript">
+    var $ = document.querySelector.bind(document);
+    var snapshot = $("canvas");
+    var video = $("video");
+    
+    navigator.webkitGetUserMedia({audio: false, video: true}, function(stream) {
+      video.src = window.URL.createObjectURL(stream);
+    });
+
+    var takeSnapshot = function() {
+      snapshot.width = video.clientWidth;
+      snapshot.height = video.clientHeight;
+
+      c = snapshot.getContext("2d");
+      c.drawImage(video, 0, 0, snapshot.width, snapshot.height);
+
+      var img = document.createElement("img");
+      img.src = snapshot.toDataURL("image/png");
+      img.style.padding = "5px";
+      img.width = snapshot.width / 2;
+      img.height = snapshot.height / 2;
+
+      $("#roll").appendChild(img);      
+    }; 
+
+    $("#takeSnap").addEventListener("click", takeSnapshot);
+  </script>
+</body>
+</html>
