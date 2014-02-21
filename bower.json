@@ -1,0 +1,6 @@
+{
+  "name": "techtaclkntnu",
+  "dependencies": {
+    "threejs": "*"
+  }
+}
