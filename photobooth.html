@@ -5,6 +5,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>WebRTC Photobooth</title>
   <style>
+    @-webkit-keyframes swing {
+      20% { -webkit-transform: rotate(15deg)  scale(0.8); }
+      40% { -webkit-transform: rotate(-10deg) scale(1.2); }
+      60% { -webkit-transform: rotate(5deg)   scale(0.9); }
+      80% { -webkit-transform: rotate(-5deg)  scale(1.1); }
+      100% { -webkit-transform: rotate(0deg) scale(1); }
+    }
+  
     body { background: teal; }
     canvas { display: none; }
     video { 
@@ -12,14 +20,18 @@
       height: 240px;
     }
 
-    img { transition: all 400ms ease; }
+    img { 
+      transition: all 400ms ease; 
+      -webkit-animation: swing 1s 1;
+    }
+
     img:hover {
       -webkit-transform: rotate(5deg) scale(1.5);
     }
   </style>
 </head>
 <body>
-	
+  
   <video autoplay></video>
   <canvas></canvas>
   <div></div>
