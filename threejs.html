@@ -13,10 +13,11 @@
       document.body.appendChild(renderer.domElement);
 
       var geometry = new THREE.CubeGeometry(1,1,1);
-      var cube = new THREE.Mesh(geometry);
-      scene.add(cube);
+      var material = new THREE.MeshBasicMaterial({color : 0x0099ff, wireframe : true});
+      var cube = new THREE.Mesh(geometry, material);
 
-      camera.position.z = 2;
+      scene.add(cube);
+      camera.position.z = 2.5;
 
       var render = function () {
         requestAnimationFrame(render);
