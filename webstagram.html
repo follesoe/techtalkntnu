@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webstagram</title>
+	<style>
+		body { background-color: silver; }
+		section {
+			margin: 24px;
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: flex-start;
+		}
+
+		img {		
+			flex: 0 0 0;
+			width: 30%;
+
+			margin: 6px;
+			min-width: 180px;
+			min-height: 180px;
+			border: solid 6px white;
+			-webkit-box-shadow: 0 3px 6px rgba(0,0,0,.25);
+
+			transition: all 400ms ease;		
+			-webkit-animation: swing 1s 1;	
+		}
+
+		img:hover {
+			z-index: 12;
+			-webkit-transform: rotate(5deg) scale(1.7);
+		}
+		
+		@-webkit-keyframes swing {
+	      20% { -webkit-transform: rotate(15deg)  scale(0.8); }
+	      40% { -webkit-transform: rotate(-10deg) scale(1.2); }
+	      60% { -webkit-transform: rotate(5deg)   scale(0.9); }
+	      80% { -webkit-transform: rotate(-5deg)  scale(1.1); }
+	      100% { -webkit-transform: rotate(0deg) scale(1); }
+	    }
+	</style>
+</head>
+<body>		
+	<button>Add photo</button>
+	<section>
+	</section>
+	<script type="text/javascript">
+		var $ = document.querySelector.bind(document)
+			i = 0;
+
+		$("button").addEventListener("click", function() {
+			i++;
+			var img = document.createElement("img");
+			img.src = "/content/img" + i + ".jpg";
+			$("section").appendChild(img);
+		});
+		
+	</script>	
+</body>
+</html>
